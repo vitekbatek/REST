@@ -28,7 +28,6 @@ public class ClientController {
     @GetMapping(value = "/clients")
     public ResponseEntity<List<Client>> read() {
         final List<Client> clients = clientService.readAll();
-
         return clients != null &&  !clients.isEmpty()
                 ? new ResponseEntity<>(clients, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
