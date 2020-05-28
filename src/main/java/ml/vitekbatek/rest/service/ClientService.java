@@ -1,7 +1,6 @@
 package ml.vitekbatek.rest.service;
 
 import ml.vitekbatek.rest.model.Client;
-
 import java.util.List;
 
 public interface ClientService {
@@ -23,7 +22,7 @@ public interface ClientService {
      * @param id - ID клиента
      * @return - объект клиента с заданным ID
      */
-    Client read(int id);
+    Client readOne(int id);
 
 
     /**

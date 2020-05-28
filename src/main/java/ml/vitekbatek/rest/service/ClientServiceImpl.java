@@ -27,7 +27,7 @@ public class ClientServiceImpl implements ClientService{
     }
 
     @Override
-    public Client read(int id) {
+    public Client readOne(int id) {
         return clientRepository.getOne(id);
     }
 
