@@ -1,7 +1,7 @@
 package ml.vitekbatek.rest.controller;
 
-import ml.vitekbatek.rest.model.Limservice;
-import ml.vitekbatek.rest.service.LimserviceService;
+import ml.vitekbatek.rest.model.Transaction;
+import ml.vitekbatek.rest.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,32 +10,31 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class LimserviceController {
-
-    private final LimserviceService limserviceService;
+public class TransactionController {
+    private final TransactionService transactionService;
 
     @Autowired
-    public LimserviceController(LimserviceService limserviceService) {
-        this.limserviceService = limserviceService;
+    public TransactionController(TransactionService transactionService) {
+        this.transactionService = transactionService;
     }
 
     @PostMapping(value = "/services")
-    public ResponseEntity<?> create(@RequestBody Limservice limservice) {
-        limserviceService.create(limservice);
+    public ResponseEntity<?> create(@RequestBody Transaction transaction) {
+        transactionService.create(transaction);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/services")
-    public ResponseEntity<List<Limservice>> read() {
-        final List<Limservice> clients = limserviceService.readAll();
+    public ResponseEntity<List<Transaction>> read() {
+        final List<Transaction> clients = transactionService.readAll();
         return clients != null &&  !clients.isEmpty()
                 ? new ResponseEntity<>(clients, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping(value = "/services/{id}")
-    public ResponseEntity<Limservice> read(@PathVariable(name = "id") int id) {
-        final Limservice client = limserviceService.readOne(id);
+    public ResponseEntity<Transaction> read(@PathVariable(name = "id") int id) {
+        final Transaction client = transactionService.readOne(id);
         return client != null
                 ? new ResponseEntity<>(client, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -43,10 +42,9 @@ public class LimserviceController {
 
     @DeleteMapping(value = "/services/{id}")
     public ResponseEntity<?> delete(@PathVariable(name = "id") int id) {
-        final boolean deleted = limserviceService.delete(id);
+        final boolean deleted = transactionService.delete(id);
         return deleted
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 }
-

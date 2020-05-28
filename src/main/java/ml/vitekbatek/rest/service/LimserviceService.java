@@ -4,7 +4,6 @@ import ml.vitekbatek.rest.model.Limservice;
 import java.util.List;
 
 public interface LimserviceService {
-
         /**
          * Создает новую услугу
          * @param limservice - услуга для создания
