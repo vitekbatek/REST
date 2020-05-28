@@ -18,13 +18,13 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
 
-    @PostMapping(value = "/services")
+    @PostMapping(value = "/transactions")
     public ResponseEntity<?> create(@RequestBody Transaction transaction) {
         transactionService.create(transaction);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "/services")
+    @GetMapping(value = "/transactions")
     public ResponseEntity<List<Transaction>> read() {
         final List<Transaction> clients = transactionService.readAll();
         return clients != null &&  !clients.isEmpty()
@@ -32,7 +32,7 @@ public class TransactionController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(value = "/services/{id}")
+    @GetMapping(value = "/transactions/{id}")
     public ResponseEntity<Transaction> read(@PathVariable(name = "id") int id) {
         final Transaction client = transactionService.readOne(id);
         return client != null
@@ -40,7 +40,7 @@ public class TransactionController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping(value = "/services/{id}")
+    @DeleteMapping(value = "/transactions/{id}")
     public ResponseEntity<?> delete(@PathVariable(name = "id") int id) {
         final boolean deleted = transactionService.delete(id);
         return deleted
