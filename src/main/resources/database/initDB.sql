@@ -15,7 +15,7 @@ CREATE TABLE limservices
 );
 CREATE SEQUENCE limservices_id_seq START WITH 1 INCREMENT BY 1;
 
-CREATE TABLE transactions
+CREATE TABLE transactionsCtrl
 (
     id    SERIAL  PRIMARY KEY ,
     idclient SERIAL REFERENCES clients (Id) ,

@@ -12,19 +12,26 @@ public class SendEmail{
 
     private JavaMailSender emailSender = new JavaMailSenderImpl();
 
-    public void sendEmails(String emailclient, String nameclient, String clientservice){
+    public boolean sendEmail(String emailclient, String nameclient, String clientservice, boolean reqstate){
         SimpleMailMessage message = new SimpleMailMessage();
 
         message.setFrom("smartservice@vitekbatek.ml");
         message.setTo(emailclient);
         message.setSubject("Smartservice");
-        message.setText("Hello, "+nameclient+"! You follow the next service: " + clientservice);
+        if (reqstate) {
+            message.setText("Hello, " + nameclient + "! The service " + clientservice+ " is approved for you :)" );
+        } else {
+            message.setText("Hello, " + nameclient + "! The service " + clientservice+ " is not approved for you :(");
+        }
+
 
         try {
             emailSender.send(message);
-            System.out.println("Email for " + nameclient + " Sent!");
+            //System.out.println("Email for " + nameclient + " Sent!");
+            return true;
         }catch(Exception ex) {
-            System.err.println("Error in sending email: "+ex);
+            //System.err.println("Error in sending email: "+ex);
+            return false;
         }
     }
 }
