@@ -11,8 +11,6 @@ import java.util.List;
 
 @RestController
 public class ClientController {
-
-
     private final ClientService clientService;
 
     @Autowired

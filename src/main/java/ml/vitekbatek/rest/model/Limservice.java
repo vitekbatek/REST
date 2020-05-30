@@ -16,7 +16,7 @@ public class Limservice {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "limservicesIdSeq")
     @Column(name = "id")
     @Getter
-    @Setter
+    //@Setter
     private int id;
 
     @Column(name = "description")

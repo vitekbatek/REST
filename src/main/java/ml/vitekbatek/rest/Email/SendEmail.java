@@ -4,9 +4,6 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
-
-
-
 public class SendEmail{
 
 
@@ -23,7 +20,6 @@ public class SendEmail{
         } else {
             message.setText("Hello, " + nameclient + "! The service " + clientservice+ " is not approved for you :(");
         }
-
 
         try {
             emailSender.send(message);

@@ -16,7 +16,7 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transactionsIdSeq")
     @Column(name = "id")
     @Getter
-    @Setter
+    //@Setter
     private int id;
 
     @Column(name = "idclient")
