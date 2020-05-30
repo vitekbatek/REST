@@ -19,13 +19,13 @@ public class LimserviceController {
         this.limserviceService = limserviceService;
     }
 
-    @PostMapping(value = "/services")
+    @PostMapping(value = "/limservices")
     public ResponseEntity<?> create(@RequestBody Limservice limservice) {
         limserviceService.create(limservice);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "/services")
+    @GetMapping(value = "/limservices")
     public ResponseEntity<List<Limservice>> read() {
         final List<Limservice> clients = limserviceService.readAll();
         return clients != null &&  !clients.isEmpty()
@@ -33,7 +33,7 @@ public class LimserviceController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(value = "/services/{id}")
+    @GetMapping(value = "/limservices/{id}")
     public ResponseEntity<Limservice> read(@PathVariable(name = "id") int id) {
         final Limservice client = limserviceService.readOne(id);
         return client != null
@@ -41,7 +41,7 @@ public class LimserviceController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping(value = "/services/{id}")
+    @DeleteMapping(value = "/limservices/{id}")
     public ResponseEntity<?> delete(@PathVariable(name = "id") int id) {
         final boolean deleted = limserviceService.delete(id);
         return deleted

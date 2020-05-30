@@ -1,6 +1,9 @@
 package ml.vitekbatek.rest.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 
@@ -12,49 +15,24 @@ public class Limservice {
     @SequenceGenerator(name = "limservicesIdSeq", sequenceName = "limservices_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "limservicesIdSeq")
     @Column(name = "id")
+    @Getter
+    @Setter
     private int id;
 
     @Column(name = "description")
+    @Getter
+    @Setter
     private String description;
 
     @Column(name = "comment")
+    @Getter
+    @Setter
     private String comment;
 
     @Column(name = "lim")
+    @Getter
+    @Setter
     private int lim;
 
 
-    // getters and setters
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public int getCount() {
-        return lim;
-    }
-
-    public void setCount(int count) {
-        this.lim = count;
-    }
 }

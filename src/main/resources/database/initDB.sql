@@ -18,10 +18,10 @@ CREATE SEQUENCE limservices_id_seq START WITH 1 INCREMENT BY 1;
 CREATE TABLE transactions
 (
     id    SERIAL  PRIMARY KEY ,
-    idClient SERIAL REFERENCES clients (Id) ,
-    idService SERIAL REFERENCES limservices (Id) ,
-    reqDate DATE NOT NULL ,
-    reqState BOOLEAN NOT NULL ,
-    emailState BOOLEAN NOT NULL
+    idclient SERIAL REFERENCES clients (Id) ,
+    idlimservice SERIAL REFERENCES limservices (Id) ,
+    reqdate TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+    reqstate BOOLEAN NOT NULL ,
+    emailstate BOOLEAN NOT NULL
 );
 CREATE SEQUENCE transactions_id_seq START WITH 1 INCREMENT BY 1;

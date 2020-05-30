@@ -1,8 +1,11 @@
 package ml.vitekbatek.rest.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "transactions")
@@ -12,71 +15,33 @@ public class Transaction {
     @SequenceGenerator(name = "transactionsIdSeq", sequenceName = "transactions_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transactionsIdSeq")
     @Column(name = "id")
+    @Getter
+    @Setter
     private int id;
 
-    @Column(name = "idClient")
-    private String idClient;
+    @Column(name = "idclient")
+    @Getter
+    @Setter
+    private String idclient;
 
-    @Column(name = "idLimservice")
-    private String idLimservice;
+    @Column(name = "idlimservice")
+    @Getter
+    @Setter
+    private String idlimservice;
 
-    @Column(name = "reqDate")
-    private Date reqDate;
+    @Column(name = "reqdate")
+    @Getter
+    @Setter
+    private Timestamp reqdate;
 
-    @Column(name = "reqState")
-    private boolean reqState;
+    @Column(name = "reqstate")
+    @Getter
+    @Setter
+    private boolean reqstate;
 
-    @Column(name = "emailState")
-    private boolean emailState;
+    @Column(name = "emailstate")
+    @Getter
+    @Setter
+    private boolean emailstate;
 
-    // getters and setters
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getIdClient() {
-        return idClient;
-    }
-
-    public void setIdClient(String idClient) {
-        this.idClient = idClient;
-    }
-
-    public String getIdLimservice() {
-        return idLimservice;
-    }
-
-    public void setIdLimservice(String idLimservice) {
-        this.idLimservice = idLimservice;
-    }
-
-    public Date getReqDate() {
-        return reqDate;
-    }
-
-    public void setReqDate(Date reqDate) {
-        this.reqDate = reqDate;
-    }
-
-    public boolean isReqState() {
-        return reqState;
-    }
-
-    public void setReqState(boolean reqState) {
-        this.reqState = reqState;
-    }
-
-    public boolean isEmailState() {
-        return emailState;
-    }
-
-    public void setEmailState(boolean emailState) {
-        this.emailState = emailState;
-    }
 }
