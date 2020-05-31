@@ -26,7 +26,7 @@ public class SendEmail{
             //System.out.println("Email for " + nameclient + " Sent!");
             return true;
         }catch(Exception ex) {
-            //System.err.println("Error in sending email: "+ex);
+            System.err.println("Error in sending email: "+ex);
             return false;
         }
     }

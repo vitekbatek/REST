@@ -32,7 +32,7 @@ public class ScheduleEvent {
                 };
             }
         }catch(Exception ex) {
-                System.err.println("Error in sending email: "+ex);
+                System.err.println("Error: "+ex);
         }
     }
 }

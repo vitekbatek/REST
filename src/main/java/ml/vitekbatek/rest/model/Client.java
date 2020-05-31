@@ -12,12 +12,13 @@ import javax.persistence.*;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Client {
     @Id
+
     @SequenceGenerator(name = "clientsIdSeq", sequenceName = "clients_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "clientsIdSeq")
     @Column(name = "id")
     @Getter
-    //@Setter
-    private int id;
+    @Setter
+    private Integer id;
 
     @Column(name = "name")
     @Getter

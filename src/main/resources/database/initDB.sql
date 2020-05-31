@@ -4,7 +4,7 @@ CREATE TABLE clients
     name  VARCHAR(200) NOT NULL ,
     email VARCHAR(254) NOT NULL
 );
-CREATE SEQUENCE clients_id_seq START WITH 1 INCREMENT BY 1;
+'CREATE SEQUENCE clients_id_seq START WITH 100 INCREMENT BY 1;'
 
 CREATE TABLE limservices
 (
@@ -13,9 +13,9 @@ CREATE TABLE limservices
     comment VARCHAR(500) ,
     lim INTEGER NOT NULL
 );
-CREATE SEQUENCE limservices_id_seq START WITH 1 INCREMENT BY 1;
+'CREATE SEQUENCE limservices_id_seq START WITH 20 INCREMENT BY 1;'
 
-CREATE TABLE transactionsCtrl
+CREATE TABLE transactions
 (
     id    SERIAL  PRIMARY KEY ,
     idclient SERIAL REFERENCES clients (Id) ,
@@ -24,4 +24,4 @@ CREATE TABLE transactionsCtrl
     reqstate BOOLEAN NOT NULL ,
     emailstate BOOLEAN NOT NULL
 );
-CREATE SEQUENCE transactions_id_seq START WITH 1 INCREMENT BY 1;
+'CREATE SEQUENCE transactions_id_seq START WITH 1 INCREMENT BY 1;'

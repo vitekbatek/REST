@@ -16,18 +16,18 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transactionsIdSeq")
     @Column(name = "id")
     @Getter
-    //@Setter
+    @Setter
     private int id;
 
     @Column(name = "idclient")
     @Getter
     @Setter
-    private String idclient;
+    private int idclient;
 
     @Column(name = "idlimservice")
     @Getter
     @Setter
-    private String idlimservice;
+    private int idlimservice;
 
     @Column(name = "reqdate")
     @Getter
