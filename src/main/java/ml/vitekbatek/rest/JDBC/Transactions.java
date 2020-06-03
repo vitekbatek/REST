@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Transactions {
-
     private Connection conn = null;
     private PreparedStatement stmt = null;
 
@@ -19,7 +18,7 @@ public class Transactions {
              conn = DriverManager
                     .getConnection("jdbc:postgresql://localhost:5432/smartservices",
                             "postgres", "postgres");
-             conn.setAutoCommit(false);
+             //conn.setAutoCommit(false);
              stmt = conn.prepareStatement("SELECT transactions.id, transactions.emailstate, transactions.reqstate, clients.name, clients.email, limservices.description\n" +
                                         "FROM transactions \n" +
                                         "INNER JOIN clients  \n" +
@@ -47,9 +46,9 @@ public class Transactions {
             conn = DriverManager
                     .getConnection("jdbc:postgresql://localhost:5432/smartservices",
                             "postgres", "postgres");
-            conn.setAutoCommit(false);
+            //conn.setAutoCommit(false);
 
-            stmt = conn.prepareStatement("UPDATE public.transactions\n" +
+            stmt = conn.prepareStatement("UPDATE transactions " +
                     "SET id=id, idclient=idclient, idlimservice=idlimservice, reqdate=reqdate, reqstate=reqstate, emailstate=True\n" +
                     "WHERE id = " + id);
             // Update table
