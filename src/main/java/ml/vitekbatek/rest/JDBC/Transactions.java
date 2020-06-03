@@ -1,21 +1,26 @@
 package ml.vitekbatek.rest.JDBC;
 
+import com.sun.rowset.CachedRowSetImpl;
+
+import javax.sql.rowset.CachedRowSet;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Transactions {
 
-     public ResultSet getNotSendEmailRecords(){
+    private Connection conn = null;
+    private PreparedStatement stmt = null;
 
-        try {
-            Connection conn = null;
-            PreparedStatement stmt = null;
-            Class.forName("org.postgresql.Driver");
-            conn = DriverManager
+
+     public CachedRowSetImpl  getNotSendEmailRecords(){
+         try {
+             Class.forName("org.postgresql.Driver");
+             conn = DriverManager
                     .getConnection("jdbc:postgresql://localhost:5432/smartservices",
                             "postgres", "postgres");
-            conn.setAutoCommit(false);
-
-            stmt = conn.prepareStatement("SELECT transactions.id, transactions.emailstate, transactions.reqstate, clients.name, clients.email, limservices.description\n" +
+             conn.setAutoCommit(false);
+             stmt = conn.prepareStatement("SELECT transactions.id, transactions.emailstate, transactions.reqstate, clients.name, clients.email, limservices.description\n" +
                                         "FROM transactions \n" +
                                         "INNER JOIN clients  \n" +
                                         "ON transactions.idclient = clients.id  \n" +
@@ -23,31 +28,31 @@ public class Transactions {
                                         "ON transactions.idlimservice = limservices.id \n" +
                                         "WHERE emailstate = false\n" +
                                         "ORDER BY id ASC");
-            ResultSet rs = stmt.executeQuery();
-            return rs;
-            //rs.close();
-            //stmt.close();
-            //c.close();
-
-        } catch (Exception e) {
+             ResultSet rs = stmt.executeQuery();
+             CachedRowSetImpl  crs = new CachedRowSetImpl();
+             crs.populate(rs);
+             rs.close();
+             stmt.close();
+             conn.close();
+             return crs;
+         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
             return null;
-        }
+         }
     }
     public void setSendEmailRecords(int id){
         try {
-            Connection conn = null;
-            PreparedStatement stmt = null;
             Class.forName("org.postgresql.Driver");
             conn = DriverManager
                     .getConnection("jdbc:postgresql://localhost:5432/smartservices",
                             "postgres", "postgres");
             conn.setAutoCommit(false);
+
             stmt = conn.prepareStatement("UPDATE public.transactions\n" +
                     "SET id=id, idclient=idclient, idlimservice=idlimservice, reqdate=reqdate, reqstate=reqstate, emailstate=True\n" +
                     "WHERE id = " + id);
-            // Request From table
+            // Update table
             stmt.executeUpdate();
             stmt.close();
             conn.close();

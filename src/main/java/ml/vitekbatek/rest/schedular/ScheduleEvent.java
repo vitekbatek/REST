@@ -1,12 +1,13 @@
 package ml.vitekbatek.rest.schedular;
 
+import com.sun.rowset.CachedRowSetImpl;
 import ml.vitekbatek.rest.JDBC.Transactions;
 import ml.vitekbatek.rest.Email.SendEmail;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.sql.*;
+import javax.sql.rowset.CachedRowSet;
 
 @Component
 @EnableScheduling
@@ -17,15 +18,15 @@ public class ScheduleEvent {
 
         Transactions transactions = new Transactions();
 
-        ResultSet resultSet = transactions.getNotSendEmailRecords();
+        CachedRowSetImpl cachedRowSet = transactions.getNotSendEmailRecords();
         SendEmail sendEmail = new SendEmail();
         try {
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String name = resultSet.getString("name");
-                String description = resultSet.getString("description");
-                String email = resultSet.getString("email");
-                boolean reqstate = resultSet.getBoolean("reqstate");
+            while (cachedRowSet.next()) {
+                int id = cachedRowSet.getInt("id");
+                String name = cachedRowSet.getString("name");
+                String description = cachedRowSet.getString("description");
+                String email = cachedRowSet.getString("email");
+                boolean reqstate = cachedRowSet.getBoolean("reqstate");
 
                 if (sendEmail.sendEmail(email, name, description, reqstate)){
                     transactions.setSendEmailRecords(id);
