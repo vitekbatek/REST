@@ -20,20 +20,23 @@ public class ScheduleEvent {
 
         CachedRowSetImpl cachedRowSet = transactions.getNotSendEmailRecords();
         SendEmail sendEmail = new SendEmail();
-        try {
-            while (cachedRowSet.next()) {
-                int id = cachedRowSet.getInt("id");
-                String name = cachedRowSet.getString("name");
-                String description = cachedRowSet.getString("description");
-                String email = cachedRowSet.getString("email");
-                boolean reqstate = cachedRowSet.getBoolean("reqstate");
+        if (cachedRowSet.size()>0) {
+            try {
+                while (cachedRowSet.next()) {
+                    int id = cachedRowSet.getInt("id");
+                    String name = cachedRowSet.getString("name");
+                    String description = cachedRowSet.getString("description");
+                    String email = cachedRowSet.getString("email");
+                    boolean reqstate = cachedRowSet.getBoolean("reqstate");
 
-                if (sendEmail.sendEmail(email, name, description, reqstate)){
-                    transactions.setSendEmailRecords(id);
-                };
+                    if (sendEmail.sendEmail(email, name, description, reqstate)) {
+                        transactions.setSendEmailRecords(id);
+                    }
+                    ;
+                }
+            } catch (Exception ex) {
+                System.err.println("Error: " + ex);
             }
-        }catch(Exception ex) {
-                System.err.println("Error: "+ex);
         }
     }
 }
