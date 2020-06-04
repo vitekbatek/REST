@@ -1,11 +1,7 @@
 package ml.vitekbatek.rest.JDBC;
 
 import com.sun.rowset.CachedRowSetImpl;
-
-import javax.sql.rowset.CachedRowSet;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Transactions {
     private Connection conn = null;
